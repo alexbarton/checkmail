@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+MAIL_D="/var/mail/${LOGNAME}"
+MAIL_COMMAND="${1:-}"
+
+find_mailboxes_with_new_mail() {
+	find "${MAIL_D}" -type d -not -empty \( -name 'new' -o -name 'cur' \) -print0 |
+		xargs -0 -I{} -- find {} -type f -not -regex '.*,D?R?S[a-z]*' -printf '%h\n' |
+		sed -E -e 's:^'"${MAIL_D}"'/:+:' -e 's:/?(cur|new)$::' |
+		sort -u
+}
+
+get_mailbox_name() {
+	if [[ "$1" = "+" ]]; then
+		echo "INBOX"
+	else
+		echo "${1#+.}"
+	fi
+}
+
+if [[ ! -d "${MAIL_D}/cur" ]]; then
+	echo "Maildir \"${MAIL_D}\" not found!" >&2
+	exit 1
+fi
+
+if [[ -z "${MAIL_COMMAND}" ]]; then
+	if command -v s-nail >/dev/null 2>&1; then
+		MAIL_COMMAND="s-nail"
+	else
+		MAIL_COMMAND="mail"
+	fi
+fi
+if ! command -v "${MAIL_COMMAND}" >/dev/null 2>&1; then
+	echo "Command not found: \"${MAIL_COMMAND}\"!"
+	exit 1
+fi
+
+echo "Looking for new mail in ${MAIL_D} ..."
+
+declare -i invocations=0
+mapfile -t mailboxes < <(find_mailboxes_with_new_mail)
+
+if [[ ${#mailboxes[@]} -eq 0 ]]; then
+	echo "No new mail."
+	exit 0
+fi
+
+for mailbox in "${mailboxes[@]}"; do
+	printf " • \e[1m%s\e[0m\n" "$(get_mailbox_name "$mailbox")"
+done
+
+for mailbox in "${mailboxes[@]}"; do
+	printf 'Opening "\e[1m%s\e[0m": with %s\n' \
+		"$(get_mailbox_name "$mailbox")" "${MAIL_COMMAND}"
+	invocations=$((invocations + 1))
+	"${MAIL_COMMAND}" -f "${mailbox}" || break
+done
+
+if [[ $invocations -eq 1 ]]; then
+	echo "One mailbox with new mail shown."
+else
+	echo "$invocations mailboxes with new mail shown."
+fi

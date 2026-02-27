@@ -52,7 +52,7 @@ for mailbox in "${mailboxes[@]}"; do
 done
 
 for mailbox in "${mailboxes[@]}"; do
-	printf 'Opening "\e[1m%s\e[0m" with %s:\n' \
+	printf '\nOpening "\e[1m%s\e[0m" with %s:\n' \
 		"$(get_mailbox_name "$mailbox")" "${MAIL_COMMAND}"
 	invocations=$((invocations + 1))
 	"${MAIL_COMMAND}" -f "${mailbox}" || break

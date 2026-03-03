@@ -7,6 +7,11 @@ MAIL_COMMAND="${1:-}"
 
 export PAGER=${CHECKMAIL_PAGER:-${PAGER:-more}}
 
+usage_exit() {
+	echo "Usage: $0 [<mailbox_command>]"
+	exit "${1:-0}"
+}
+
 find_mailboxes_with_new_mail() {
 	find "${MAIL_D}" -type d -not -empty \( -name 'new' -o -name 'cur' \) -print0 |
 		xargs -0 -I{} -- find {} -type f -not -regex '.*,D?R?S[a-z]*' -printf '%h\n' |
@@ -21,6 +26,9 @@ get_mailbox_name() {
 		echo "${1#+.}"
 	fi
 }
+
+[[ "${1:-}" = "--help" ]] && usage_exit 0
+[[ $# -gt 1 ]] && usage_exit 2 >&2
 
 if [[ ! -d "${MAIL_D}/cur" ]]; then
 	echo "Maildir \"${MAIL_D}\" not found!" >&2

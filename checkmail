@@ -67,6 +67,7 @@ for mailbox in "${mailboxes[@]}"; do
 	invocations=$((invocations + 1))
 	"${MAIL_COMMAND}" -f "${mailbox}" || break
 done
+echo
 
 if [[ $invocations -eq 1 ]]; then
 	echo "One mailbox with new mail shown."

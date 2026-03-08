@@ -61,11 +61,13 @@ for mailbox in "${mailboxes[@]}"; do
 	printf " • \e[1m%s\e[0m\n" "$(get_mailbox_name "$mailbox")"
 done
 
+declare -i exit_code=0
 for mailbox in "${mailboxes[@]}"; do
 	printf '\nOpening "\e[1m%s\e[0m" with %s:\n' \
 		"$(get_mailbox_name "$mailbox")" "${MAIL_COMMAND}"
 	invocations=$((invocations + 1))
-	"${MAIL_COMMAND}" -f "${mailbox}" || break
+	"${MAIL_COMMAND}" -f "${mailbox}" && exit_code=0 || exit_code=$?
+	[[ $exit_code -eq 0 ]] || break
 done
 echo
 
@@ -74,3 +76,4 @@ if [[ $invocations -eq 1 ]]; then
 else
 	echo "$invocations mailboxes with new mail shown."
 fi
+exit $exit_code

@@ -7,7 +7,8 @@ folders found with `openmail`.
 
 ### Usage: checkmail
 
-`checkmail [<mailbox_command> [<arguments...>]]`
+- `checkmail [<mailbox_command> [<arguments...>]]`
+- `checkmail {--list-only|-l}`
 
 ## openmail: Setup and call an email client for a Maildir folder
 

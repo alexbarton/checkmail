@@ -10,6 +10,7 @@ export MAILDIR="${MAILDIR:-/var/mail/${LOGNAME}}"
 
 usage_exit() {
 	echo "Usage: $0 [<mailbox_command> [<arguments...>]]"
+	echo "       $0 {-l|--list-only}"
 	exit "${1:-0}"
 }
 
@@ -34,6 +35,8 @@ while [[ $# -gt 0 ]]; do
 	case "$1" in
 	"--help")
 		usage_exit 0 ;;
+	"--list-only"|"-l")
+		LIST_ONLY=1 ;;
 	-*)
 		usage_exit 1 >&2 ;;
 	*)
@@ -60,6 +63,8 @@ fi
 for mailbox in "${mailboxes[@]}"; do
 	printf " • \e[1m%s\e[0m\n" "$(get_mailbox_name "$mailbox")"
 done
+
+[[ -n "${LIST_ONLY:-}" ]] && exit 0
 
 declare -i exit_code=0
 for mailbox in "${mailboxes[@]}"; do

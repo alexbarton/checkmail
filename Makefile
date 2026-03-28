@@ -20,8 +20,16 @@ distclean: clean
 
 maintainer-clean: distclean
 
+define CHECK_PROGRAM
+echo "Testing $(1) ..."; \
+./$(1) --help | grep -Fq Usage: || { echo "$(1): Error on --help!"; exit 1; }; \
+./$(1) --invalid_arg 2>&1 >/dev/null | grep -Fq Usage: || { echo "$(1): error on --invalid_arg!"; exit 1; };
+endef
+
 check: all
-	./bin/checkmail --help | grep -Fq Usage:
+	@for p in $(BIN_SCRIPTS); do \
+	  $(call CHECK_PROGRAM,$$p) \
+	 done
 	shellcheck $(BIN_SCRIPTS)
 	mdl *.md
 

@@ -6,12 +6,27 @@
 
 set -euo pipefail
 
-if [[ $# -gt 1 || "${1:-}" = "--help" ]]; then
-	echo "Usage: $0 [<Maildir_directory>]" >&2
-	exit 1
-fi
-
 export MAILDIR="${1:-${MAILDIR:-/var/mail/${LOGNAME}}}"
+
+usage_exit() {
+	echo "Usage: $0 [<Maildir_directory>]"
+	exit "${1:-0}"
+}
+
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+	"--help")
+		usage_exit 0 ;;
+	-*)
+		usage_exit 1 >&2 ;;
+	*)
+		break
+	esac
+	shift
+done
+
+# Only no or one argument is supported.
+[[ $# -le 1 ]] || usage_exit 1 >&2
 
 if [[ ! -e "$MAILDIR" ]]; then
 	echo "Error: \"$MAILDIR\" not found!" >&2

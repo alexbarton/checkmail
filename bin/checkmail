@@ -28,7 +28,19 @@ get_mailbox_name() {
 	fi
 }
 
-[[ "${1:-}" = "--help" ]] && usage_exit 0
+unset LIST_ONLY
+
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+	"--help")
+		usage_exit 0 ;;
+	-*)
+		usage_exit 1 >&2 ;;
+	*)
+		break
+	esac
+	shift
+done
 
 if [[ ! -d "${MAILDIR}/cur" ]]; then
 	echo "Maildir \"${MAILDIR}\" not found!" >&2

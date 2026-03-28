@@ -7,6 +7,7 @@
 set -euo pipefail
 
 export PAGER=${CLIMAIL_PAGER:-${PAGER:-more}}
+export LISTER=${LISTER:-"$(dirname "$0")"/lister}
 
 usage_exit() {
 	echo "Usage: $0 [<mailbox> [<mailbox_command> [<arguments...>]]]"

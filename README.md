@@ -39,6 +39,10 @@ Environment:
 Find and format a list of all mailboxes in a Maildir tree. When writing to a
 terminal, the output is piped through `column`.
 
+The `lister` command can be set and exported in the `LISTER` environment
+variable for S-nail and GNU mailutils, for example, what the `openmail` command
+does by default when `LISTER` is not already set.
+
 ### Usage: lister
 
 `lister [<Maildir_directory>]`

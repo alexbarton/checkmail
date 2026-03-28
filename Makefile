@@ -8,6 +8,7 @@ BIN_DIR ?= $(PREFIX)/bin
 
 BIN_SCRIPTS = \
 	bin/checkmail \
+	bin/lister \
 	bin/openmail \
 
 all:

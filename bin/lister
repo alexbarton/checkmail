@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+#
+# climail/lister:
+# Find and format a list of all mailboxes in a Maildir tree.
+#
+
+set -euo pipefail
+
+if [[ $# -gt 1 || "${1:-}" = "--help" ]]; then
+	echo "Usage: $0 [<Maildir_directory>]" >&2
+	exit 1
+fi
+
+export MAILDIR="${1:-${MAILDIR:-/var/mail/${LOGNAME}}}"
+
+if [[ ! -e "$MAILDIR" ]]; then
+	echo "Error: \"$MAILDIR\" not found!" >&2
+	exit 1
+fi
+if [[ ! -r "$MAILDIR" ]]; then
+	echo "Error: \"$MAILDIR\" is not readable!" >&2
+	exit 1
+fi
+if [[ ! -d "$MAILDIR/cur" || ! -d "$MAILDIR/new" ]]; then
+	echo "Error: \"$MAILDIR\" seems not to be a Maildir!" >&2
+	exit 1
+fi
+cd "$MAILDIR"
+
+[[ -t 0 ]] && fmt="column" || fmt="cat"
+
+find . -maxdepth 1 -type d -name '.*' |
+	sed -E -e 's/^\.(\/|$)/+/' |
+	sort -u |
+	${fmt}

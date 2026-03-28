@@ -33,3 +33,12 @@ Environment:
 
 - `CLIMAIL_PAGER`: `PAGER` is set to its value (when available) before calling
   the `<mailbox_command>`.
+
+## lister: List all mailboxes in a Maildir tree
+
+Find and format a list of all mailboxes in a Maildir tree. When writing to a
+terminal, the output is piped through `column`.
+
+### Usage: lister
+
+`lister [<Maildir_directory>]`

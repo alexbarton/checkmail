@@ -3,15 +3,31 @@
 ## checkmail: Check Maildir recursively for new email
 
 Check the `Maildir` of the current user recursively for new email, and open all
-folders found with the email client.
-
-The following email clients are supported by default:
-
-- `mail`
-- `s-nail` (preferred when found)
-
-An alternative email client can be specified on the command line.
+folders found with `openmail`.
 
 ### Usage: checkmail
 
 `checkmail [<mailbox_command> [<arguments...>]]`
+
+## openmail: Setup and call an email client for a Maildir folder
+
+Run a command on a mailbox in `Maildir` format. By default, an email client
+is used to read mail.
+
+The following email clients are supported by default:
+
+- `mail`: called as `mail -f`.
+- `s-nail`: preferred when found, called as `s-nail -f`.
+
+An alternative command and its arguments can can be specified on the command
+line. And this can be an arbitrary command, it must not be an interactive CLI
+email client.
+
+### Usage: openmail
+
+`openmail <mailbox> [<mailbox_command> [<arguments...>]]`
+
+Environment:
+
+- `CLIMAIL_PAGER`: `PAGER` is set to its value (when available) before calling
+  the `<mailbox_command>`.

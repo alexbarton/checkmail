@@ -6,6 +6,10 @@ DESTDIR ?=
 PREFIX ?= /usr/local
 BIN_DIR ?= $(PREFIX)/bin
 
+BIN_SCRIPTS = \
+	bin/checkmail \
+	bin/openmail \
+
 all:
 
 clean:
@@ -16,10 +20,10 @@ maintainer-clean: distclean
 
 check: all
 	./bin/checkmail --help | grep -Fq Usage:
-	shellcheck bin/checkmail
+	shellcheck $(BIN_SCRIPTS)
 	mdl *.md
 
 install:
-	install -m 0755 bin/checkmail "$(BIN_DIR)/checkmail"
+	install -m 0755 $(BIN_SCRIPTS) "$(BIN_DIR)"
 
 .PHONY: all clean distclean maintainer-clean check install

@@ -23,9 +23,11 @@ An alternative command and its arguments can can be specified on the command
 line. And this can be an arbitrary command, it must not be an interactive CLI
 email client.
 
+When no mailbox is specified, `+` (the "INBOX") is used by default.
+
 ### Usage: openmail
 
-`openmail <mailbox> [<mailbox_command> [<arguments...>]]`
+`openmail [<mailbox> [<mailbox_command> [<arguments...>]]]`
 
 Environment:
 

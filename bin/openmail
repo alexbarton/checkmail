@@ -9,7 +9,7 @@ set -euo pipefail
 export PAGER=${CLIMAIL_PAGER:-${PAGER:-more}}
 
 usage_exit() {
-	echo "Usage: $0 <mailbox> [<mailbox_command> [<arguments...>]]"
+	echo "Usage: $0 [<mailbox> [<mailbox_command> [<arguments...>]]]"
 	exit "${1:-0}"
 }
 
@@ -22,10 +22,9 @@ get_mailbox_name() {
 }
 
 [[ "${1:-}" = "--help" ]] && usage_exit 0
-[[ $# -ge 1 ]] || usage_exit 1 >&2
 
-mailbox="$1"
-shift
+mailbox="${1:-+}"
+[[ $# -ge 1 ]] && shift
 
 mailbox_command=("$@")
 

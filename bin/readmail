@@ -20,10 +20,21 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
+select_command=(
+	fzf
+	"--border-label= Select mail folder "
+	"--height=~100%"
+	"--highlight-line"
+	"--info=right"
+	"--keep-right"
+	"--no-multi"
+	"--tmux=center,50,80%"
+)
+
 while
 	folder=$("$(dirname "$0")"/lister |
 		sed -e 's/^+.//' -e 's/^+$/INBOX/' |
-		fzf
+		"${select_command[@]}"
 	)
 do
 	if [[ "${folder}" = "INBOX" ]]; then

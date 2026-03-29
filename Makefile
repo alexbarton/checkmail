@@ -12,7 +12,7 @@ BIN_SCRIPTS = \
 	bin/openmail \
 	bin/readmail \
 
-all:
+all: $(BIN_SCRIPTS)
 
 clean:
 
@@ -33,7 +33,7 @@ check: all
 	shellcheck $(BIN_SCRIPTS)
 	mdl *.md
 
-install:
+install: all
 	install -m 0755 -v $(BIN_SCRIPTS) "$(BIN_DIR)"
 
 .PHONY: all clean distclean maintainer-clean check install

@@ -10,12 +10,13 @@ init_gettext() {
 	# shellcheck disable=SC1091
 	. gettext.sh
 	export TEXTDOMAIN=climail
-	for locale_dir in ./po /usr/local/share/locale; do
-		if [[ -r "${locale_dir}/de/LC_MESSAGES/climail.mo" ]]; then
+	if [[ -z ${TEXTDOMAINDIR:-} ]]; then
+		for locale_dir in ./po "${HOME}/.local/share/locale" /usr/local/share/locale; do
+			[[ -r "${locale_dir}/de/LC_MESSAGES/${TEXTDOMAIN}.mo" ]] || continue
 			export TEXTDOMAINDIR=$locale_dir
 			break
-		fi
-	done
+		done
+	fi
 }
 
 get_mailbox_name() {

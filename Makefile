@@ -5,6 +5,7 @@
 DESTDIR ?=
 PREFIX ?= /usr/local
 BINDIR ?= $(PREFIX)/bin
+LIBEXECDIR ?= $(PREFIX)/libexec
 LOCALEDIR ?= $(PREFIX)/share/locale
 
 BIN_SCRIPTS = \
@@ -12,6 +13,9 @@ BIN_SCRIPTS = \
 	bin/lister \
 	bin/openmail \
 	bin/readmail \
+
+LIBEXEC_FILES = \
+	libexec/climail/climail.inc.sh \
 
 POFILES := $(wildcard po/*.po)
 LANGS := $(patsubst po/%.po,%,$(POFILES))
@@ -47,12 +51,14 @@ check: all
 	@for p in $(BIN_SCRIPTS); do \
 	  $(call CHECK_PROGRAM,$$p) \
 	 done
-	shellcheck $(BIN_SCRIPTS)
+	shellcheck $(BIN_SCRIPTS) $(LIBEXEC_FILES)
 	mdl *.md
 
 install: all
 	install -d -m 0755 -v "$(DESTDIR)$(BINDIR)"
 	install -m 0755 -v $(BIN_SCRIPTS) "$(DESTDIR)$(BINDIR)"
+	install -d -m 0755 -v "$(DESTDIR)$(LIBEXECDIR)/climail"
+	install -m 0644 -v $(LIBEXEC_FILES) "$(DESTDIR)$(LIBEXECDIR)/climail/"
 	@for lang in $(LANGS); do \
 	  install -d -m 0755 -v "$(DESTDIR)$(LOCALEDIR)/$$lang/LC_MESSAGES"; \
 	  install -m 0644 -v po/$$lang/LC_MESSAGES/climail.mo "$(DESTDIR)$(LOCALEDIR)/$$lang/LC_MESSAGES/climail.mo"; \

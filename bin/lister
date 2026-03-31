@@ -6,17 +6,10 @@
 
 set -euo pipefail
 
-# shellcheck disable=SC1091
-. gettext.sh
-export TEXTDOMAIN=climail
-for locale_dir in ./po /usr/local/share/locale; do
-	if [[ -r "${locale_dir}/de/LC_MESSAGES/climail.mo" ]]; then
-		export TEXTDOMAINDIR=$locale_dir
-		break
-	fi
-done
-
-export MAILDIR="${1:-${MAILDIR:-/var/mail/${LOGNAME}}}"
+SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+export SCRIPT_DIR
+# shellcheck disable=1091
+. "${SCRIPT_DIR}/../libexec/climail/climail.inc.sh"
 
 usage_exit() {
 	echo "$(gettext 'Usage'): $0 [<Maildir_directory>]"
@@ -37,6 +30,8 @@ done
 
 # Only no or one argument is supported.
 [[ $# -le 1 ]] || usage_exit 1 >&2
+
+[[ $# -ge 1 ]] && MAILDIR="$1"
 
 if [[ ! -e "$MAILDIR" ]]; then
 	eval_gettext "Error: \"\${MAILDIR}\" not found!" >&2; echo >&2

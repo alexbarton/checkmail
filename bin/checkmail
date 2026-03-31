@@ -6,18 +6,6 @@
 
 set -euo pipefail
 
-# shellcheck disable=SC1091
-. gettext.sh
-export TEXTDOMAIN=climail
-for locale_dir in ./po /usr/local/share/locale; do
-	if [[ -r "${locale_dir}/de/LC_MESSAGES/climail.mo" ]]; then
-		export TEXTDOMAINDIR=$locale_dir
-		break
-	fi
-done
-
-export MAILDIR="${MAILDIR:-/var/mail/${LOGNAME}}"
-
 usage_exit() {
 	echo "$(gettext 'Usage'):"
 	echo "  $0 [<mailbox_command> [<arguments...>]]"
@@ -32,13 +20,10 @@ find_mailboxes_with_unread_mail() {
 		sort -u
 }
 
-get_mailbox_name() {
-	if [[ "$1" = "+" ]]; then
-		echo "INBOX"
-	else
-		echo "${1#+.}"
-	fi
-}
+SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+export SCRIPT_DIR
+# shellcheck disable=1091
+. "${SCRIPT_DIR}/../libexec/climail/climail.inc.sh"
 
 unset LIST_ONLY
 

@@ -6,30 +6,14 @@
 
 set -euo pipefail
 
-# shellcheck disable=SC1091
-. gettext.sh
-export TEXTDOMAIN=climail
-for locale_dir in ./po /usr/local/share/locale; do
-	if [[ -r "${locale_dir}/de/LC_MESSAGES/climail.mo" ]]; then
-		export TEXTDOMAINDIR=$locale_dir
-		break
-	fi
-done
-
-export PAGER=${CLIMAIL_PAGER:-${PAGER:-more}}
-export LISTER=${LISTER:-"$(dirname "$0")"/lister}
+SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+export SCRIPT_DIR
+# shellcheck disable=1091
+. "${SCRIPT_DIR}/../libexec/climail/climail.inc.sh"
 
 usage_exit() {
 	echo "$(gettext 'Usage'): $0 [<mailbox> [<mailbox_command> [<arguments...>]]]"
 	exit "${1:-0}"
-}
-
-get_mailbox_name() {
-	if [[ "$1" = "+" ]]; then
-		echo "INBOX"
-	else
-		echo "${1#+.}"
-	fi
 }
 
 while [[ $# -gt 0 ]]; do

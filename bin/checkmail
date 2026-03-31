@@ -41,10 +41,7 @@ while [[ $# -gt 0 ]]; do
 	shift
 done
 
-if [[ ! -d "${MAILDIR}/cur" ]]; then
-	eval_gettext "Error: \"\${MAILDIR}\" not found!" >&2; echo >&2
-	exit 1
-fi
+validate_maildir_or_abort
 
 eval_gettext "Looking for unread mail in \${MAILDIR} ..."; echo
 

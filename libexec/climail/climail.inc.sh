@@ -27,6 +27,21 @@ get_mailbox_name() {
 	fi
 }
 
+validate_maildir_or_abort() {
+	if [[ ! -e "$MAILDIR" ]]; then
+		eval_gettext "Error: \"\${MAILDIR}\" not found!" >&2; echo >&2
+		exit 1
+	fi
+	if [[ ! -r "$MAILDIR" ]]; then
+		eval_gettext "Error: \"\${MAILDIR}\" is not readable!" >&2; echo >&2
+		exit 1
+	fi
+	if [[ ! -d "$MAILDIR/cur" || ! -d "$MAILDIR/new" ]]; then
+		eval_gettext "Error: \"\${MAILDIR}\" seems not to be a Maildir!" >&2; echo >&2
+		exit 1
+	fi
+}
+
 export LISTER=${LISTER:-"$(dirname "$0")"/lister}
 export MAILDIR="${MAILDIR:-/var/mail/${LOGNAME}}"
 export PAGER=${CLIMAIL_PAGER:-${PAGER:-more}}

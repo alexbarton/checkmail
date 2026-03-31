@@ -1,5 +1,44 @@
 # climail: Suite of commands for handling Maildir email on the command line
 
+## Prerequisites
+
+1. Your local email setup must use the *"Maildir" layout*. Either in its
+   default location `/var/mail/${LOGNAME}` or specified by the `MAILDIR`
+   environment variable.
+
+1. *GNU bash* must be available. You can use a different shell, but all tools
+   use the `bash` shell as interpreter. The "shebang" line uses `/usr/bin/env`
+   to execute `bash` in your search path (`$PATH`).
+
+1. *GNU gettext* must be installed. Specifically, the `gettext.sh` script must
+   be in your search path (`$PATH`). On Debian-based systems, it is included in
+   the "gettext-base" package, which can be installed like this:
+
+   ```sh
+   apt-get update && apt-get install gettext-base
+   ```
+
+   You can verify that it is installed and can be found with this command:
+   `type gettext.sh`: this should output the full path name to the script.
+
+1. A capable *command line mail reader*, like `mail` from the *GNU Mailutils*
+   or (even better and preferred) `s-nail` from the *S-nail* (*S-mailx*)
+   package must be *available* and *configured* to handle email in your local
+   `Maildir` folder(s).
+
+### Command line mail reader setup
+
+As noted above, the *mail reader* (typically `mail` or `s-nail`) must be
+configured for your local Maildir setup. A starting point for your `~/.mailrc`
+file could look like this, for example:
+
+```plain
+# Set INBOX, MBOX, and "record" (sent mail) folder.
+set folder=/var/mail/your_user_name
+set MBOX=+.Archive
+set record=+.Sent
+```
+
 ## checkmail: Check Maildir recursively for new email
 
 Check the `Maildir` of the current user recursively for new email, and open all
@@ -64,7 +103,7 @@ Find and format a list of all mailboxes in a Maildir tree. When writing to a
 terminal, the output is piped through `column`.
 
 The `lister` command can be set and exported in the `LISTER` environment
-variable for S-nail and GNU mailutils, for example, what the `openmail` command
+variable for S-nail and GNU Mailutils, for example, what the `openmail` command
 does by default when `LISTER` is not already set.
 
 ### Usage: lister

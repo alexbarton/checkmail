@@ -26,6 +26,25 @@
    package must be *available* and *configured* to handle email in your local
    `Maildir` folder(s).
 
+## Installation
+
+You can run the scripts right from the source directory or install them into
+the system. In both cases, the language files must be generated with `make`.
+
+To install everything into the `/usr/local` hierarchy, the default, call:
+
+```sh
+make all && sudo make install
+```
+
+The common `DESTDIR`, `PREFIX`, etc. variables are supported in the `Makefile`,
+therefore you can call the following command to install into an (writable)
+`/opt/climail` path:
+
+```sh
+make PREFIX=/opt/climail install
+```
+
 ### Command line mail reader setup
 
 As noted above, the *mail reader* (typically `mail` or `s-nail`) must be

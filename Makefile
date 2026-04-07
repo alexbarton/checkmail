@@ -7,6 +7,7 @@ PREFIX ?= /usr/local
 BINDIR ?= $(PREFIX)/bin
 LIBEXECDIR ?= $(PREFIX)/libexec
 LOCALEDIR ?= $(PREFIX)/share/locale
+MANDIR ?= $(PREFIX)/share/man
 
 BIN_SCRIPTS = \
 	bin/checkmail \
@@ -21,7 +22,19 @@ POFILES := $(wildcard po/*.po)
 LANGS := $(patsubst po/%.po,%,$(POFILES))
 MOFILES := $(foreach lang,$(LANGS),po/$(lang)/LC_MESSAGES/climail.mo)
 
-all: $(BIN_SCRIPTS) po/messages.pot $(MOFILES)
+MANPAGES_MD = \
+	man/man1/checkmail.md \
+	man/man1/lister.md \
+	man/man1/openmail.md \
+	man/man1/readmail.md \
+	man/de/man1/checkmail.md \
+	man/de/man1/lister.md \
+	man/de/man1/openmail.md \
+	man/de/man1/readmail.md \
+
+MANPAGES = $(MANPAGES_MD:.md=.1)
+
+all: $(BIN_SCRIPTS) po/messages.pot $(MOFILES) $(MANPAGES)
 
 po/%/LC_MESSAGES/climail.mo: po/%.po
 	mkdir -p po/$*/LC_MESSAGES
@@ -30,10 +43,14 @@ po/%/LC_MESSAGES/climail.mo: po/%.po
 po/messages.pot:
 	make update-pot
 
+%.1: %.md
+	pandoc -s -t man $< -o $@
+
 clean:
 	rm -f po/*/LC_MESSAGES/climail.mo
 	rmdir po/*/LC_MESSAGES 2>/dev/null || true
 	rmdir po/* 2>/dev/null || true
+	rm -f $(MANPAGES)
 
 distclean: clean
 	rm -f po/*.po~
@@ -52,7 +69,9 @@ check: all
 	  $(call CHECK_PROGRAM,$$p) \
 	 done
 	shellcheck $(BIN_SCRIPTS) $(LIBEXEC_FILES)
-	mdl *.md
+	mdl -g -r ~MD025 .
+	grep -Fq 'checks the Maildir' man/man1/checkmail.1
+	grep -Fq 'keine Schleife begonnen' man/de/man1/readmail.1
 
 install: all
 	install -d -m 0755 -v "$(DESTDIR)$(BINDIR)"
@@ -62,6 +81,11 @@ install: all
 	@for lang in $(LANGS); do \
 	  install -d -m 0755 -v "$(DESTDIR)$(LOCALEDIR)/$$lang/LC_MESSAGES"; \
 	  install -m 0644 -v po/$$lang/LC_MESSAGES/climail.mo "$(DESTDIR)$(LOCALEDIR)/$$lang/LC_MESSAGES/climail.mo"; \
+	done
+	install -d -m 0755 -v "$(DESTDIR)$(MANDIR)/man1"
+	install -d -m 0755 -v "$(DESTDIR)$(MANDIR)/de/man1"
+	@for manpage in $(MANPAGES); do \
+	  install -m 0644 -v $$manpage "$(DESTDIR)$(MANDIR)/$${manpage#man/}"; \
 	done
 
 # Regenerate messages.pot from all scripts

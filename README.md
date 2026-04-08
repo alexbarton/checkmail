@@ -55,6 +55,8 @@ Homepage: <https://github.com/alexbarton/climail>
    package must be *available* and *configured* to handle email in your local
    `Maildir` folder(s).
 
+1. The `readmail` command depends on `fzf`, the *command-line fuzzy finder*.
+
 ## Installation
 
 You can run the scripts right from the source directory or install them into

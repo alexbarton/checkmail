@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-30 17:12+0200\n"
+"POT-Creation-Date: 2026-04-08 23:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,56 +18,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: bin/checkmail:22 bin/lister:22 bin/openmail:23 bin/readmail:20
+#: bin/checkmail:10 bin/lister:15 bin/openmail:15 bin/readmail:15
 msgid "Usage"
 msgstr ""
 
-#: bin/checkmail:60 bin/lister:42
-#, sh-format
-msgid "Error: \"${MAILDIR}\" not found!"
-msgstr ""
-
-#: bin/checkmail:64
+#: bin/checkmail:51
 #, sh-format
 msgid "Looking for unread mail in ${MAILDIR} ..."
 msgstr ""
 
-#: bin/checkmail:70
+#: bin/checkmail:57
 msgid "No unread mail."
 msgstr ""
 
-#: bin/checkmail:92
+#: bin/checkmail:79
 #, sh-format
 msgid " (out of ${count})"
 msgstr ""
 
-#: bin/checkmail:98
+#: bin/checkmail:85
 #, sh-format
 msgid "Opened one mailbox${total_info} with unread mail."
 msgid_plural "Opened ${invocations} mailboxes${total_info} with unread mail."
 msgstr[0] ""
 msgstr[1] ""
 
-#: bin/lister:46
-#, sh-format
-msgid "Error: \"${MAILDIR}\" is not readable!"
-msgstr ""
-
-#: bin/lister:50
-#, sh-format
-msgid "Error: \"${MAILDIR}\" seems not to be a Maildir!"
-msgstr ""
-
-#: bin/openmail:74
+#: bin/openmail:63
 #, sh-format
 msgid "Command not found: \"${cmd}\"!"
 msgstr ""
 
-#: bin/openmail:82
+#: bin/openmail:71
 #, sh-format
 msgid "Opening \"${mailbox_name}\" with ${cmd}:"
 msgstr ""
 
-#: bin/readmail:39
+#: bin/readmail:34
 msgid "Select mail folder"
+msgstr ""
+
+#: libexec/climail/climail.inc.sh:32
+#, sh-format
+msgid "Error: \"${MAILDIR}\" not found!"
+msgstr ""
+
+#: libexec/climail/climail.inc.sh:36
+#, sh-format
+msgid "Error: \"${MAILDIR}\" is not readable!"
+msgstr ""
+
+#: libexec/climail/climail.inc.sh:40
+#, sh-format
+msgid "Error: \"${MAILDIR}\" seems not to be a Maildir!"
 msgstr ""

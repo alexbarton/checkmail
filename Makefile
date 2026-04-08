@@ -90,7 +90,9 @@ install: all
 
 # Regenerate messages.pot from all scripts
 update-pot:
-	xgettext --language=Shell --from-code=UTF-8 --keyword=gettext --keyword=eval_gettext -o po/messages.pot bin/*
+	xgettext --language=Shell --from-code=UTF-8 \
+		--keyword=gettext --keyword=eval_gettext \
+		-o po/messages.pot bin/* libexec/climail/*
 
 # Merge new strings into all .po files
 update-po: update-pot

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: climail 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-30 17:12+0200\n"
+"POT-Creation-Date: 2026-04-08 23:32+0200\n"
 "PO-Revision-Date: 2026-03-30 00:34+0200\n"
 "Last-Translator: Alexander Barton <alex+climail@barton.de>\n"
 "Language-Team: German <translation-team-de@lists.sourceforge.net>\n"
@@ -17,56 +17,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bin/checkmail:22 bin/lister:22 bin/openmail:23 bin/readmail:20
+#: bin/checkmail:10 bin/lister:15 bin/openmail:15 bin/readmail:15
 msgid "Usage"
 msgstr "Aufruf"
 
-#: bin/checkmail:60 bin/lister:42
-#, sh-format
-msgid "Error: \"${MAILDIR}\" not found!"
-msgstr "Fehler: \"${MAILDIR}\" nicht gefunden!"
-
-#: bin/checkmail:64
+#: bin/checkmail:51
 #, sh-format
 msgid "Looking for unread mail in ${MAILDIR} ..."
 msgstr "Suche nach ungelesener Mail in ${MAILDIR} ..."
 
-#: bin/checkmail:70
+#: bin/checkmail:57
 msgid "No unread mail."
 msgstr "Keine ungelesene Mail gefunden."
 
-#: bin/checkmail:92
+#: bin/checkmail:79
 #, sh-format
 msgid " (out of ${count})"
 msgstr " (von ${count})"
 
-#: bin/checkmail:98
+#: bin/checkmail:85
 #, sh-format
 msgid "Opened one mailbox${total_info} with unread mail."
 msgid_plural "Opened ${invocations} mailboxes${total_info} with unread mail."
 msgstr[0] "Eine Mailbox mit ungelesener Mail wurde geöffnet${total_info}."
-msgstr[1] "${invocations} Mailboxen mit ungelesener Mail wurden geöffnet${total_info}."
+msgstr[1] ""
+"${invocations} Mailboxen mit ungelesener Mail wurden geöffnet${total_info}."
 
-#: bin/lister:46
-#, sh-format
-msgid "Error: \"${MAILDIR}\" is not readable!"
-msgstr "Fehler: \"${MAILDIR}\" kann nicht gelesen werden!"
-
-#: bin/lister:50
-#, sh-format
-msgid "Error: \"${MAILDIR}\" seems not to be a Maildir!"
-msgstr "Fehler: \"${MAILDIR}\" scheint kein Maildir zu sein!"
-
-#: bin/openmail:74
+#: bin/openmail:63
 #, sh-format
 msgid "Command not found: \"${cmd}\"!"
 msgstr "Befehl nicht gefunden: \"${cmd}\"!"
 
-#: bin/openmail:82
+#: bin/openmail:71
 #, sh-format
 msgid "Opening \"${mailbox_name}\" with ${cmd}:"
 msgstr "Öffne \"${mailbox_name}\" mit ${cmd}:"
 
-#: bin/readmail:39
+#: bin/readmail:34
 msgid "Select mail folder"
 msgstr "Ordner auswählen"
+
+#: libexec/climail/climail.inc.sh:32
+#, sh-format
+msgid "Error: \"${MAILDIR}\" not found!"
+msgstr "Fehler: \"${MAILDIR}\" nicht gefunden!"
+
+#: libexec/climail/climail.inc.sh:36
+#, sh-format
+msgid "Error: \"${MAILDIR}\" is not readable!"
+msgstr "Fehler: \"${MAILDIR}\" kann nicht gelesen werden!"
+
+#: libexec/climail/climail.inc.sh:40
+#, sh-format
+msgid "Error: \"${MAILDIR}\" seems not to be a Maildir!"
+msgstr "Fehler: \"${MAILDIR}\" scheint kein Maildir zu sein!"

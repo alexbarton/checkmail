@@ -21,7 +21,7 @@ readmail — Interaktive Auswahl eines Mail‑Ordners zum Lesen
 interaktiv einen Mail‑Ordner auszuwählen und anschließend **openmail(1)**
 darauf auszuführen.
 
-Sobald **fzf(1)** einen Rückgabewert ungleich 0 liefert, zum Beispiel when es
+Sobald **fzf(1)** einen Rückgabewert ungleich 0 liefert, zum Beispiel wenn es
 mit CTRL+D beendet wurde, beendet **readmail** die Schleife und beendet sich.
 
 Wenn ein Suchtext *search_pattern* angegeben wurde, wird dieses an **fzf(1)**

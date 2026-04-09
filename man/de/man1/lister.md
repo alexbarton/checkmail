@@ -19,10 +19,10 @@ lister — Maildir‑Ordner finden und auflisten
 
 **lister** findet und formatiert eine Liste aller Ordner in einem
 Maildir‑Verzeichnis. Wenn die Ausgabe auf ein Terminal erfolgt, wird sie durch
-**column(1)** gefiltert.
+**column**(1) gefiltert.
 
-**lister** kann als externer Ordner‑Lister für **s-nail(1)** und GNU Mailutils
-**mail(1)** verwendet werden. So setzt zum Beispiel **openmail(1)** die
+**lister** kann als externer Ordner‑Lister für **s-nail**(1) und GNU Mailutils
+**mail**(1) verwendet werden. So setzt zum Beispiel **openmail**(1) die
 Umgebungsvariable LISTER automatisch, wenn sie nicht bereits gesetzt ist.
 
 # ENVIRONMENT
@@ -43,7 +43,7 @@ Umgebungsvariable LISTER automatisch, wenn sie nicht bereits gesetzt ist.
 
 # SIEHE AUCH
 
-**openmail(1)**, **readmail(1)**, **checkmail(1)**, **mail(1)**, **s-nail(1)**
+**openmail**(1), **readmail**(1), **checkmail**(1), **mail**(1), **s-nail**(1)
 
 # FEHLER MELDEN
 

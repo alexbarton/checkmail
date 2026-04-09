@@ -22,7 +22,7 @@ ein E‑Mail‑Client gestartet, um den Ordner zu lesen.
 
 Unterstützte Mailreader:
 
-- **mail(1)**: aufgerufen als "mail -f".
+- **mail**(1): aufgerufen als "mail -f".
 - **s-nail**: bevorzugt, wenn vorhanden, aufgerufen als "s-nail -f".
 
 Ein alternativer Befehl *mailbox_command* und seine Parameter *arguments* können
@@ -39,7 +39,7 @@ vorangestellt. Und die Namen "INBOX" und "inbox" werden immer in "+" übersetzt.
 
 Auf diese Weise können *freundliche* Ordner-Namen verwendet werden, wie sie zum
 Beispiel auch beim Start von **openmail** angezeigt und in der Auswahlliste von
-**readmail(1)** verwendet werden.
+**readmail**(1) verwendet werden.
 
 # ENVIRONMENT
 
@@ -59,7 +59,7 @@ Beispiel auch beim Start von **openmail** angezeigt und in der Auswahlliste von
 
 # SIEHE AUCH
 
-**checkmail(1)**, **readmail(1)**, **lister(1)**, **mail(1)**, **s-nail(1)**
+**checkmail**(1), **readmail**(1), **lister**(1), **mail**(1), **s-nail**(1)
 
 # FEHLER MELDEN
 

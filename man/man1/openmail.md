@@ -22,8 +22,8 @@ client is used to read mail.
 
 The following email clients are supported by default:
 
-- **mail(1)**: called as "mail -f".
-- **s-nail(1)**: preferred when found, called as "s-nail -f".
+- **mail**(1): called as "mail -f".
+- **s-nail**(1): preferred when found, called as "s-nail -f".
 
 An alternative *mailbox_command* and its *arguments* can can be specified on the
 command line. And this can be an arbitrary command, it must not be an
@@ -37,7 +37,7 @@ with an alphanumeric character, "+." is prepended automatically. And the plain
 names "INBOX" and "inbox" are always translated into "+".
 
 This way you can use *friendly* folder names as shown when starting **openmail**
-and used in the selector of the **readmail(1)** command, for example.
+and used in the selector of the **readmail**(1) command, for example.
 
 # ENVIRONMENT
 
@@ -57,7 +57,7 @@ and used in the selector of the **readmail(1)** command, for example.
 
 # SEE ALSO
 
-**checkmail(1)**, **readmail(1)**, **lister(1)**, **mail(1)**, **s-nail(1)**
+**checkmail**(1), **readmail**(1), **lister**(1), **mail**(1), **s-nail**(1)
 
 # BUGS
 

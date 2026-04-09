@@ -18,10 +18,10 @@ lister - list all mailboxes in a Maildir tree
 # DESCRIPTION
 
 **lister** finds and formats a list of all mailboxes in a Maildir tree. If
-output is directed to a terminal, it is automatically piped through **column(1)**.
+output is directed to a terminal, it is automatically piped through **column**(1).
 
-**lister** can be used as an external folder lister for **s-nail(1)** and GNU
-Mailutils **mail(1)**. For example, **openmail(1)** automatically sets the
+**lister** can be used as an external folder lister for **s-nail**(1) and GNU
+Mailutils **mail**(1). For example, **openmail**(1) automatically sets the
 LISTER environment variable if it is not already defined.
 
 # ENVIRONMENT
@@ -42,7 +42,7 @@ LISTER environment variable if it is not already defined.
 
 # SEE ALSO
 
-**openmail(1)**, **readmail(1)**, **checkmail(1)**, **mail(1)**, **s-nail(1)**
+**openmail**(1), **readmail**(1), **checkmail**(1), **mail**(1), **s-nail**(1)
 
 # BUGS
 

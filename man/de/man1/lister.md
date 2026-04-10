@@ -9,7 +9,7 @@ footer: climail package
 
 # BEZEICHNUNG
 
-lister — Maildir‑Ordner finden und auflisten
+lister — Maildir-Ordner finden und auflisten
 
 # ÜBERSICHT
 
@@ -18,17 +18,17 @@ lister — Maildir‑Ordner finden und auflisten
 # BESCHREIBUNG
 
 **lister** findet und formatiert eine Liste aller Ordner in einem
-Maildir‑Verzeichnis. Wenn die Ausgabe auf ein Terminal erfolgt, wird sie durch
+Maildir-Verzeichnis. Wenn die Ausgabe auf ein Terminal erfolgt, wird sie durch
 **column**(1) gefiltert.
 
-**lister** kann als externer Ordner‑Lister für **s-nail**(1) und GNU Mailutils
+**lister** kann als externer Ordner-Lister für **s-nail**(1) und GNU Mailutils
 **mail**(1) verwendet werden. So setzt zum Beispiel **openmail**(1) die
 Umgebungsvariable LISTER automatisch, wenn sie nicht bereits gesetzt ist.
 
 # ENVIRONMENT
 
 **LISTER**
-: Pfad zu einem alternativen Lister‑Programm wie **lister**.
+: Pfad zu einem alternativen Lister-Programm wie **lister**.
 
 **MAILDIR**
 : Überschreibt den Standardpfad zum Maildir (**/var/log/${LOGNAME}**).

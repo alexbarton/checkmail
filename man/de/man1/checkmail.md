@@ -9,7 +9,7 @@ footer: climail package
 
 # BEZEICHNUNG
 
-checkmail - Maildir rekursiv auf neue E‑Mails prüfen
+checkmail - Maildir rekursiv auf neue E-Mails prüfen
 
 # ÜBERSICHT
 
@@ -19,7 +19,7 @@ checkmail - Maildir rekursiv auf neue E‑Mails prüfen
 # BESCHREIBUNG
 
 **checkmail** durchsucht das Maildir des aktuellen Benutzers rekursiv nach neuen
-E‑Mails und öffnet alle gefundenen Ordner mit **openmail**(1), wobei der Befehl
+E-Mails und öffnet alle gefundenen Ordner mit **openmail**(1), wobei der Befehl
 *mailbox_command* und seine Parameter *arguments* übergeben werden, wenn diese
 auf der Kommandozeile angegeben wurden.
 

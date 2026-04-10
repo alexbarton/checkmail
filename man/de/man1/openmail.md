@@ -17,8 +17,8 @@ openmail — Mailreader für einen Maildir-Ordner vorbereiten und starten
 
 # BESCHREIBUNG
 
-**openmail** führt einen Befehl auf einem Maildir‑Ordner aus. Standardmäßig wird
-ein E‑Mail‑Client gestartet, um den Ordner zu lesen.
+**openmail** führt einen Befehl auf einem Maildir-Ordner aus. Standardmäßig wird
+ein E-Mail-Client gestartet, um den Ordner zu lesen.
 
 Unterstützte Mailreader:
 
